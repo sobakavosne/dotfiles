@@ -1,0 +1,36 @@
+[global_config]
+  handle_size = 5
+  geometry_hinting = True
+  window_state = fullscreen
+  extra_styling = False
+  title_at_bottom = True
+  title_transmit_fg_color = "#deddda"
+  title_transmit_bg_color = "#000000"
+  title_inactive_fg_color = "#9a9996"
+  title_inactive_bg_color = "#000000"
+  inactive_color_offset = 0.8035714285714286
+  line_height = 1.2
+  case_sensitive = False
+[keybindings]
+  copy = <Primary><Shift>Cyrillic_es
+  page_up_half = <Primary><Shift>KP_Up
+  page_down_half = <Primary><Shift>KP_Down
+[profiles]
+  [[default]]
+    background_color = "#fdf6e3"
+    cursor_shape = ibeam
+    cursor_color = "#aaaaaa"
+    font = Tlwg Typewriter 12
+    foreground_color = "#657b83"
+    scrollback_lines = 5000
+    use_system_font = False
+    copy_on_selection = True
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
