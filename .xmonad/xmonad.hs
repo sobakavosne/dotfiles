@@ -155,25 +155,24 @@ spawnSelected' lst = gridselect conf lst >>= flip whenJust spawn
                    , gs_font         = myFont
                    }
 
-myAppGrid = [ 
-         --   ("Audacity", "audacity")
-         -- , ("Deadbeef", "deadbeef")
-         -- , ("Emacs", "emacsclient -c -a emacs")
-              ("Firefox", "firefox")
-         -- , ("Geany", "geany")
-         -- , ("Geary", "geary")
+myAppGrid = [ ("Disks", "gnome-disks")
+            , ("Firefox", "firefox")
             , ("Gimp", "gimp")
 	    , ("Gpic", "gpic")
-            , ("Kdenlive", "kdenlive")
 	    , ("Libreoffice Calc", "localc")
 	    , ("Libreoffice Draw", "lodraw")
-            , ("LibreOffice Impress", "loimpress")
             , ("LibreOffice Writer", "lowriter")
-         -- , ("OBS", "obs")
-            , ("Nvidia settings", "nvidia-settings")
-            , ("PCManFM", "pcmanfm")
-	    , ("PyCharm", "pycharm-community")
+            , ("Nvidia", "nvidia-settings")
+         -- , ("PCManFM", "pcmanfm")
+            , ("Files", "nautilus")
+	    , ("VSCode", "code")
+	    , ("Settings", "gnome-control-center")
+	    , ("Software & Updates", "software-properties-gtk")
 	    , ("Startup Applications", "gnome-session-properties")
+	    , ("Telegram", "telegram-desktop")
+	    , ("Terminator", "terminator")
+	    , ("Text Editor", "gnome-text-editor")
+	    , ("Qualculate!", "qalculate-gtk")
             ]
 
 treeselectAction :: TS.TSConfig (X ()) -> X ()
