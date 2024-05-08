@@ -5,7 +5,11 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+import XMonad.Actions.CycleWS
+import XMonad.Actions.CopyWindow
+
 import XMonad.Hooks.ManageDocks
+
 import XMonad.Util.Run
 import XMonad.Util.SpawnOnce
 
@@ -119,6 +123,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+   
+    -- Switch to the next workspace
+    , ((modm .|. controlMask, xK_Right), nextWS)
+      
+    -- Switch to the previous workspace
+    , ((modm .|. controlMask, xK_Left), prevWS)
     ]
     ++
 
