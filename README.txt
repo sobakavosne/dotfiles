@@ -9,9 +9,7 @@ Ubuntu notes
   cd /usr/share/X11/xorg.conf.d/
   sudo vim 40-libinput.conf
 
-  > Section "InputClass"
-  >     Identifier "touchpad"
-  >     Driver "libinput"
-  >     MatchIsTouchpad "on"
+      Identifier "touchpad"
+      ...
   >     Option "NaturalScrolling" "true"  # Adjust to match your preference
-  > EndSection
+  EndSection
