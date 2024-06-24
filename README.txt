@@ -1,6 +1,6 @@
 prerequisites:
 
-sudo apt install xmonad libghc-xmonad-contrib-dev nitrogen compton xmobar suckless-tools
+sudo apt install xmonad libghc-xmonad-contrib-dev nitrogen compton xmobar suckless-tools libxpm-dev
 
 Ubuntu notes
 
