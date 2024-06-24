@@ -24,6 +24,7 @@ import           XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, N
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.Renamed
 import           XMonad.Layout.ResizableTile
+import           XMonad.Layout.Simplest
 import           XMonad.Layout.SimplestFloat
 import           XMonad.Layout.Spacing
 import           XMonad.Layout.Spiral
