@@ -15,7 +15,6 @@ Config { font            = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=
        , pickBroadest = False
        , persistent = False
        , hideOnStart = False
-       , iconRoot = "."
        , allDesktops = True
        , overrideRedirect = True
        , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C",
@@ -23,10 +22,8 @@ Config { font            = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=
                                           "--normal","green",
                                           "--high","red",
                                           "--low","lightblue"] 36000
-                    , Run Network "enp0s3" ["-L","0","-H","32",
+                    , Run Network "wlp3s0" ["-L","0","-H","32",
                                           "--normal","green","--high","red"] 10
-                    -- , Run Network "eth1" ["-L","0","-H","32",
-                    --                       "--normal","green","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50",
                                "--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
@@ -34,11 +31,12 @@ Config { font            = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run BatteryP ["BAT0"] ["-t", "<acstatus> <left>%", "--", "-O", "<fc=#00FF00>AC</fc> ", "-i", "", "-L", "15", "-H", "80", "-p", "3", "--", "-l", "#FF0000", "-m", "#FFFF00", "-h", "#00FF00"] 600
                     , Run Com "bash" ["-c", "~/bluetooth_status.sh"] "bluetooth" 10
+                    , Run Com "/bin/bash" ["-c", "echo '<icon=/home/dm/.config/xmonad/xpm/haskell_20.xpm/>'"] "icon" 10
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %enp0s3% }\
+       , template = " %icon%  <action=`scrot`><fc=#686de1>Linux</fc></action> | %cpu% | %memory% * %swap% | %wlp3s0% }\
                     -- \{ <fc=#ee9a00>%date%</fc> | %EGPF% | %uname%"
-                     \{%bluetooth% <fc=#ee9a00>%date%</fc> | %battery%" 
+                     \{%bluetooth% <fc=#ee9a00>%date%</fc> | %battery% }"
        }
