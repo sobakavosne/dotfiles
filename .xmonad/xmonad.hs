@@ -104,10 +104,13 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((modm, xK_comma), sendMessage (IncMasterN 1))
     -- Deincrement the number of windows in the master area
   , ((modm, xK_period), sendMessage (IncMasterN (-1)))
-    -- Toggle the status bar gap
-    -- Use this binding with avoidStruts from Hooks.ManageDocks.
-    -- See also the statusBar function from Hooks.DynamicLog.
-    --
+    -- Brightness control
+  , ( (controlMask, xK_F4)
+    , spawn
+        "xrandr --output eDP-1-0 --brightness $(xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | awk '{if ($1-0.05 >= 0.05) print $1-0.05; else print 0.05}')")
+  , ( (controlMask, xK_F5)
+    , spawn
+        "xrandr --output eDP-1-0 --brightness $(xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | awk '{if ($1+0.05 <= 1.0) print $1+0.05; else print 1.0}')")
   , ((modm, xK_b), sendMessage ToggleStruts)
     -- Quit xmonad
   , ((modm .|. shiftMask, xK_q), io exitSuccess)
