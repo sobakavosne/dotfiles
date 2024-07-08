@@ -17,6 +17,7 @@ Config { font            = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=
        , hideOnStart = False
        , allDesktops = True
        , overrideRedirect = True
+       , iconRoot     = ".config/xmobar/xpm/"
        , commands = [ Run Network "wlp3s0" ["-L","0","-H","32", "--normal","green","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50", "--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
@@ -24,10 +25,10 @@ Config { font            = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=
                     , Run Com "uname" ["-s","-r"] "linux" 36000
                     , Run BatteryP ["BAT0"] ["-t", "<acstatus> <left>%", "--", "-O", "<fc=#00FF00>AC</fc> ", "-i", "", "-L", "15", "-H", "80", "-p", "3", "--", "-l", "#FF0000", "-m", "#FFFF00", "-h", "#00FF00"] 5
                     , Run Com "bash" ["-c", "~/.config/xmobar/bluetooth_status.sh"] "bluetooth" 10
-                    , Run Com "bash" ["-c", "echo '<icon=/home/dm/.xmonad/xpm/haskell_20.xpm/>'"] "icon" 360000
+                    , Run Com "bash" ["-c", "echo '<icon=haskell_20.xpm/>'"] "icon" 360000
                     , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
                     , Run Com "bash" ["-c", "~/.config/xmobar/keyboard_layout.sh"] "kbdlayout" 5
-		                , Run Com "bash" ["-c", "~/.config/xmobar/get_sound_volume.sh"] "soundlevel" 5
+                    , Run Com "bash" ["-c", "~/.config/xmobar/get_sound_volume.sh"] "soundlevel" 5
                     , Run Com "bash" ["-c", "~/.config/xmobar/get_current_brightness.sh"] "brightness" 5
                     ]
        , sepChar = "%"
