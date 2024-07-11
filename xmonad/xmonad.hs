@@ -111,7 +111,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((modm, xK_t), withFocused $ windows . W.sink)
     -- Increment the number of windows in the master area
   , ((modm, xK_comma), sendMessage (IncMasterN 1))
-    -- Deincrement the number of windows in the master area
+    -- Decrement the number of windows in the master area
   , ((modm, xK_period), sendMessage (IncMasterN (-1)))
     -- Brightness control
   , ( (controlMask, xK_F4)
@@ -121,8 +121,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     , spawn
         "xrandr --output eDP-1-0 --brightness $(xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | awk '{if ($1+0.05 <= 1.0) print $1+0.05; else print 1.0}')")
     -- Sound level control
-  , ((controlMask, xK_F2), spawn "pactl set-sink-volume @DEFAULT_SINK@ -5%")
-  , ((controlMask, xK_F3), spawn "pactl set-sink-volume @DEFAULT_SINK@ +5%")
+  , ((controlMask, xK_F2), spawn "~/.xmonad/set_volume_level_and_send_notification.sh -l -5%")
+  , ((controlMask, xK_F3), spawn "~/.xmonad/set_volume_level_and_send_notification.sh -l +5%")
   , ((modm, xK_b), sendMessage ToggleStruts)
     -- Quit xmonad
   , ((modm .|. shiftMask, xK_q), io exitSuccess)
