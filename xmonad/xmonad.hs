@@ -103,10 +103,10 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((modm, xK_Tab), windows W.focusDown)
     -- Swap the focused window and the master window
   , ((modm, xK_Return), windows W.swapMaster)
-    -- Shrink the master area
   , ((modm, xK_k), sendMessage Shrink)
-    -- Expand the master area
   , ((modm, xK_l), sendMessage Expand)
+  , ((modm, xK_i), sendMessage MirrorShrink)
+  , ((modm, xK_o), sendMessage MirrorExpand)
     -- Push window back into tiling
   , ((modm, xK_t), withFocused $ windows . W.sink)
     -- Increment the number of windows in the master area
@@ -115,14 +115,14 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((modm, xK_period), sendMessage (IncMasterN (-1)))
     -- Brightness control
   , ( (controlMask, xK_F4)
-    , spawn
-        "xrandr --output eDP-1-0 --brightness $(xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | awk '{if ($1-0.05 >= 0.05) print $1-0.05; else print 0.05}')")
+    , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta -0.05")
   , ( (controlMask, xK_F5)
-    , spawn
-        "xrandr --output eDP-1-0 --brightness $(xrandr --verbose | grep -i brightness | cut -f2 -d ' ' | awk '{if ($1+0.05 <= 1.0) print $1+0.05; else print 1.0}')")
+    , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta +0.05")
     -- Sound level control
-  , ((controlMask, xK_F2), spawn "~/.xmonad/set_volume_level_and_send_notification.sh -l -5%")
-  , ((controlMask, xK_F3), spawn "~/.xmonad/set_volume_level_and_send_notification.sh -l +5%")
+  , ( (controlMask, xK_F2)
+    , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta -5%")
+  , ( (controlMask, xK_F3)
+    , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta +5%")
   , ((modm, xK_b), sendMessage ToggleStruts)
     -- Quit xmonad
   , ((modm .|. shiftMask, xK_q), io exitSuccess)
