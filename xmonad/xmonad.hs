@@ -46,6 +46,9 @@ import           XMonad.Util.EZConfig                (additionalKeysP)
 import           XMonad.Util.Run
 import           XMonad.Util.SpawnOnce
 
+-- Extra
+import           Graphics.X11.ExtraTypes.XF86
+
 myTerminal = "terminator"
 
 myFocusFollowsMouse :: Bool
@@ -138,7 +141,11 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((modm .|. shiftMask, xK_Right), shiftToNext >> nextWS) -- Send window to next workspace
   ] ++
     -- super-space, Change keyboard layout
-  [((mod4Mask, xK_space), spawn "~/.xmonad/toggle_layout.sh")]
+  [((mod4Mask, xK_space), spawn "~/.xmonad/toggle_layout.sh")] ++
+    -- Keybinding for play/pause button (headphones)
+  [ ((0, xF86XK_AudioPlay), spawn "playerctl play-pause")
+  , ((0, xF86XK_AudioPause), spawn "playerctl play-pause")
+  ]
 
 myMouseBindings XConfig {XMonad.modMask = modm} =
   M.fromList
