@@ -92,15 +92,19 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((modm, xK_p), spawn "dmenu_run")
     -- launch nautilus
   , ((mod4Mask, xK_e), spawn "nautilus")
-      -- launch telegram
+    -- launch telegram
   , ((mod4Mask, xK_t), spawn "telegram-desktop")
     -- launch gmrun
   , ((modm .|. shiftMask, xK_p), spawn "gmrun")
+    -- launch firefox
+  , ((mod4Mask, xK_f), spawn "firefox")
+    -- launch vscode
+  , ((mod4Mask, xK_c), spawn "code")
     -- close focused window
   , ((modm .|. shiftMask, xK_c), kill)
-     -- Rotate through the available layout algorithms
+    -- Rotate through the available layout algorithms
   , ((modm, xK_space), sendMessage NextLayout)
-    --  Reset the layouts on the current workspace to default
+    -- Reset the layouts on the current workspace to default
   , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
     -- Move focus to the next window
   , ((modm, xK_Tab), windows W.focusDown)
