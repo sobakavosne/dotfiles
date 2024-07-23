@@ -2,7 +2,7 @@ prerequisites:
 
 sudo apt install xmonad libghc-xmonad-contrib-dev \ 
   nitrogen compton xmobar suckless-tools libxpm-dev \ 
-  acpi dunst playerctl
+  acpi dunst playerctl flameshot
 
 Ubuntu notes
 

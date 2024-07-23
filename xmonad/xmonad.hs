@@ -100,6 +100,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   , ((mod4Mask, xK_f), spawn "firefox")
     -- launch vscode
   , ((mod4Mask, xK_c), spawn "code")
+    -- launch flameshot
+  , ((0, xK_Print), spawn "flameshot gui")
     -- close focused window
   , ((modm .|. shiftMask, xK_c), kill)
     -- Rotate through the available layout algorithms
