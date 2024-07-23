@@ -123,14 +123,14 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- Decrement the number of windows in the master area
   , ((modm, xK_period), sendMessage (IncMasterN (-1)))
     -- Brightness control
-  , ( (controlMask, xK_F4)
+  , ( (0, xF86XK_MonBrightnessDown)
     , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta -0.05")
-  , ( (controlMask, xK_F5)
+  , ( (0, xF86XK_MonBrightnessUp)
     , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta +0.05")
     -- Sound level control
-  , ( (controlMask, xK_F2)
+  , ( (0, xF86XK_AudioLowerVolume)
     , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta -5%")
-  , ( (controlMask, xK_F3)
+  , ( (0, xF86XK_AudioRaiseVolume)
     , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta +5%")
   , ((modm, xK_b), sendMessage ToggleStruts)
     -- Quit xmonad
