@@ -151,7 +151,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- Keybinding for play/pause button (headphones)
   [ ((0, xF86XK_AudioPlay), spawn "playerctl play-pause")
   , ((0, xF86XK_AudioPause), spawn "playerctl play-pause")
-  ]
+  ] ++
+  [((modm .|. controlMask, xK_grave), spawn "~/.xmonad/media_check_lock.sh")]
 
 myMouseBindings XConfig {XMonad.modMask = modm} =
   M.fromList
@@ -225,6 +226,7 @@ myStartupHook = do
   spawnOnce "~/.xmonad/apply_color_profile.sh"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
+  spawnOnce "xautolock -time 10 -locker ~/.xmonad/media_check_lock.sh &"
 
 main = do
   xmproc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
