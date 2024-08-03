@@ -8,6 +8,8 @@ else
   xset s on
   # Check if the screen is already locked
   if ! pgrep -x "i3lock" >/dev/null; then
+    rm -f /tmp/screen_locked.png /tmp/screen_locked_blur.png /tmp/lockscreen.png
+
     scrot /tmp/screen_locked.png
 
     convert /tmp/screen_locked.png -blur 0x10 /tmp/screen_locked_blur.png
