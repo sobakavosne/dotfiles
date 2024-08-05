@@ -22,6 +22,8 @@ else
 
     convert "$IMAGE" -resize "$RES"\! "$TEMP_IMAGE"
 
+    setxkbmap us
+
     i3lock -i "$TEMP_IMAGE"
   fi
 fi
