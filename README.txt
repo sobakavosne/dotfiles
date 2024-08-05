@@ -3,7 +3,8 @@ prerequisites:
 sudo apt install xmonad libghc-xmonad-contrib-dev \ 
   nitrogen compton xmobar suckless-tools libxpm-dev \ 
   acpi dunst playerctl flameshot xautolock scrot \
-  i3lock xset
+  i3lock xset \
+  starship zoxide
 
 Ubuntu notes
 
