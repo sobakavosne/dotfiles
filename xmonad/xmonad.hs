@@ -11,7 +11,8 @@ import qualified XMonad.StackSet                     as W
 
 -- Actions
 import           XMonad.Actions.CopyWindow
-import           XMonad.Actions.CycleWS
+import XMonad.Actions.CycleWS
+    ( nextWS, prevWS, shiftToNext, shiftToPrev )
 import           XMonad.Actions.MouseResize
 
 -- Hooks
@@ -224,6 +225,7 @@ myLogHook = return ()
 myStartupHook = do
   liftIO batteryCheck
   spawnOnce "~/.xmonad/apply_color_profile.sh"
+  spawnOnce "numlockx on"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
   spawnOnce "xautolock -time 10 -locker ~/.xmonad/media_check_lock.sh &"
