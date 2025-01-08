@@ -5,14 +5,13 @@ sudo apt install xmonad libghc-xmonad-contrib-dev \
   acpi dunst playerctl flameshot xautolock scrot \
   i3lock xset \
   starship zoxide \
-  numlockx
+  numlockx vim pulseaudio-utils
 
 Ubuntu notes
 
 - Change the touch-pad direction to the natural scrolling
 
-  cd /usr/share/X11/xorg.conf.d/
-  sudo vim 40-libinput.conf
+  sudo vim /usr/share/X11/xorg.conf.d/40-libinput.conf
 
       Identifier "touchpad"
       ...
