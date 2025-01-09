@@ -7,6 +7,8 @@ sudo apt install xmonad libghc-xmonad-contrib-dev \
   zoxide \
   numlockx vim pulseaudio-utils
 
+sudo snap refresh --hold=forever
+
 "starship" should be installed separately:
 
   curl -sS https://starship.rs/install.sh | sh
