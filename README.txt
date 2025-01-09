@@ -1,11 +1,24 @@
 prerequisites:
 
-sudo apt install xmonad libghc-xmonad-contrib-dev \ 
-  nitrogen compton xmobar suckless-tools libxpm-dev \ 
+sudo apt install xmonad libghc-xmonad-contrib-dev \
+  nitrogen compton xmobar suckless-tools libxpm-dev \
   acpi dunst playerctl flameshot xautolock scrot \
-  i3lock xset \
-  starship zoxide \
+  i3lock \
+  zoxide \
   numlockx vim pulseaudio-utils
+
+"starship" should be installed separately:
+
+  curl -sS https://starship.rs/install.sh | sh
+
+"xset" will be installed within the nvidia driver
+
+ASUS Zenbook (NVidia) requires some libraries from the cooler control for Linux:
+
+  sudo apt install curl apt-transport-https
+  curl -1sLf   'https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/setup.deb.sh'   | sudo -E bash
+  sudo apt update
+  sudo apt install coolercontrol
 
 Ubuntu notes
 
