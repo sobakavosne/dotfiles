@@ -28,5 +28,7 @@ Ubuntu notes
 
       Identifier "touchpad"
       ...
-  >     Option "NaturalScrolling" "true"  # Adjust to match your preference
+  +>    Option "NaturalScrolling" "true"  # Adjust to match your preference
+  +>    Option "Tapping" "on"
+
   EndSection
