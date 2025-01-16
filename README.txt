@@ -5,7 +5,8 @@ sudo apt install xmonad libghc-xmonad-contrib-dev \
   acpi dunst playerctl flameshot xautolock scrot \
   i3lock \
   zoxide \
-  numlockx vim pulseaudio-utils
+  numlockx vim pulseaudio-utils \
+  imagemagick
 
 sudo snap refresh --hold=forever
 
