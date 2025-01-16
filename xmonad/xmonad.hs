@@ -75,7 +75,7 @@ myWorkspaces = map show [0 .. 9]
 
 myNormalBorderColor = "#282c34"
 
-myFocusedBorderColor = "#46d9ff"
+myFocusedBorderColor = "#cc9999" -- "#46d9ff"
 
 colorBack = "#fdf6e3"
 
