@@ -23,7 +23,7 @@
     scrollback_lines = 5000
     scrollback_infinite = True
     disable_mousewheel_zoom = True
-    palette = "#241f31:#0f8b05:#0f8b05:#0f8b05:#3465a4:#75507b:#06989a:#d3d7cf:#241f31:#813d9c:#0f8b05:#865e3c:#729fcf:#ad7fa8:#34e2e2:#eeeeec"
+    palette = "#241f31:#a51d2d:#0f8b05:#0f8b05:#77767b:#75507b:#06989a:#c0bfbc:#241f31:#813d9c:#0f8b05:#865e3c:#729fcf:#ad7fa8:#1a5fb4:#77767b"
     use_system_font = False
     copy_on_selection = True
     title_transmit_fg_color = "#77767b"
