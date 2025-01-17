@@ -231,7 +231,8 @@ myStartupHook = do
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
   spawnOnce "xautolock -time 10 -locker ~/.xmonad/media_check_lock.sh &"
-  spawnOnce "xmobar ~/.config/xmobar/xmobarrc"
+  
+  spawn "sleep 0.001 && xmobar ~/.config/xmobar/xmobarrc"
 
 main = do
   xmonad $ docks defaults
