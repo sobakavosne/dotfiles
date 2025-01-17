@@ -6,7 +6,7 @@ import           System.Exit
 import           System.IO                           (hPutStrLn)
 import           XMonad
 
-import qualified Data.Map                            as M
+import qualified Data.Map.Strict 		     as M
 import qualified XMonad.StackSet                     as W
 
 -- Actions
@@ -137,7 +137,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- Quit xmonad
   , ((modm .|. shiftMask, xK_q), io exitSuccess)
     -- Restart xmonad
-  , ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
+  , ((modm, xK_q), spawn "xmonad --recompile; ~/.xmonad/cleanup.sh; xmonad --restart")
     -- Switch to the next workspace
   , ((modm .|. controlMask, xK_Right), nextWS)
     -- Switch to the previous workspace
@@ -223,15 +223,17 @@ batteryCheck =
 myLogHook = return ()
 
 myStartupHook = do
+  spawn "killall xmobar"
+  
   liftIO batteryCheck
   spawnOnce "~/.xmonad/apply_color_profile.sh"
   spawnOnce "numlockx on"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
   spawnOnce "xautolock -time 10 -locker ~/.xmonad/media_check_lock.sh &"
+  spawnOnce "xmobar ~/.config/xmobar/xmobarrc"
 
 main = do
-  xmproc <- spawnPipe "xmobar ~/.config/xmobar/xmobarrc"
   xmonad $ docks defaults
 
 defaults =
