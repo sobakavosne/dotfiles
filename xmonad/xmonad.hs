@@ -6,13 +6,13 @@ import           System.Exit
 import           System.IO                           (hPutStrLn)
 import           XMonad
 
-import qualified Data.Map.Strict 		     as M
+import qualified Data.Map.Strict                     as M
 import qualified XMonad.StackSet                     as W
 
 -- Actions
 import           XMonad.Actions.CopyWindow
-import XMonad.Actions.CycleWS
-    ( nextWS, prevWS, shiftToNext, shiftToPrev )
+import           XMonad.Actions.CycleWS              (nextWS, prevWS,
+                                                      shiftToNext, shiftToPrev)
 import           XMonad.Actions.MouseResize
 
 -- Hooks
@@ -86,74 +86,83 @@ color15 = "#93a1a1"
 color16 = "#6c71c4"
 
 myKeys conf@XConfig {XMonad.modMask = modm} =
-  M.fromList $
+  M.fromList
+    $
     -- launch a terminal
-  [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- launch dmenu
-  , ((modm, xK_p), spawn "dmenu_run")
+     , ((modm, xK_p), spawn "dmenu_run")
     -- launch nautilus
-  , ((mod4Mask, xK_e), spawn "nautilus")
+     , ((mod4Mask, xK_e), spawn "nautilus")
     -- launch telegram
-  , ((mod4Mask, xK_t), spawn "telegram-desktop")
+     , ((mod4Mask, xK_t), spawn "telegram-desktop")
     -- launch gmrun
-  , ((modm .|. shiftMask, xK_p), spawn "gmrun")
+     , ((modm .|. shiftMask, xK_p), spawn "gmrun")
     -- launch firefox
-  , ((mod4Mask, xK_f), spawn "firefox")
+     , ((mod4Mask, xK_f), spawn "firefox")
     -- launch vscode
-  , ((mod4Mask, xK_c), spawn "code")
+     , ((mod4Mask, xK_c), spawn "code")
+    -- launch discord
+     , ((mod4Mask, xK_d), spawn "discord")
     -- launch flameshot
-  , ((0, xK_Print), spawn "flameshot gui")
+     , ((0, xK_Print), spawn "flameshot gui")
     -- close focused window
-  , ((modm .|. shiftMask, xK_c), kill)
+     , ((modm .|. shiftMask, xK_c), kill)
     -- Rotate through the available layout algorithms
-  , ((modm, xK_space), sendMessage NextLayout)
+     , ((modm, xK_space), sendMessage NextLayout)
     -- Reset the layouts on the current workspace to default
-  , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
+     , ((modm .|. shiftMask, xK_space), setLayout $ XMonad.layoutHook conf)
     -- Move focus to the next window
-  , ((modm, xK_Tab), windows W.focusDown)
+     , ((modm, xK_Tab), windows W.focusDown)
     -- Swap the focused window and the master window
-  , ((modm, xK_Return), windows W.swapMaster)
-  , ((modm, xK_k), sendMessage Shrink)
-  , ((modm, xK_l), sendMessage Expand)
-  , ((modm, xK_i), sendMessage MirrorShrink)
-  , ((modm, xK_o), sendMessage MirrorExpand)
+     , ((modm, xK_Return), windows W.swapMaster)
+     , ((modm, xK_k), sendMessage Shrink)
+     , ((modm, xK_l), sendMessage Expand)
+     , ((modm, xK_i), sendMessage MirrorShrink)
+     , ((modm, xK_o), sendMessage MirrorExpand)
     -- Push window back into tiling
-  , ((modm, xK_t), withFocused $ windows . W.sink)
+     , ((modm, xK_t), withFocused $ windows . W.sink)
     -- Increment the number of windows in the master area
-  , ((modm, xK_comma), sendMessage (IncMasterN 1))
+     , ((modm, xK_comma), sendMessage (IncMasterN 1))
     -- Decrement the number of windows in the master area
-  , ((modm, xK_period), sendMessage (IncMasterN (-1)))
+     , ((modm, xK_period), sendMessage (IncMasterN (-1)))
     -- Brightness control
-  , ( (0, xF86XK_MonBrightnessDown)
-    , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta -0.05")
-  , ( (0, xF86XK_MonBrightnessUp)
-    , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta +0.05")
+     , ( (0, xF86XK_MonBrightnessDown)
+       , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta -0.05")
+     , ( (0, xF86XK_MonBrightnessUp)
+       , spawn "~/.xmonad/set_brightness_level_and_notify.sh --delta +0.05")
     -- Sound level control
-  , ( (0, xF86XK_AudioLowerVolume)
-    , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta -5%")
-  , ( (0, xF86XK_AudioRaiseVolume)
-    , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta +5%")
-  , ((modm, xK_b), sendMessage ToggleStruts)
+     , ( (0, xF86XK_AudioLowerVolume)
+       , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta -5%")
+     , ( (0, xF86XK_AudioRaiseVolume)
+       , spawn "~/.xmonad/set_volume_level_and_notify.sh --delta +5%")
+     , ((modm, xK_b), sendMessage ToggleStruts)
     -- Quit xmonad
-  , ((modm .|. shiftMask, xK_q), io exitSuccess)
+     , ((modm .|. shiftMask, xK_q), io exitSuccess)
     -- Restart xmonad
-  , ((modm, xK_q), spawn "xmonad --recompile; ~/.xmonad/cleanup.sh; xmonad --restart")
+     , ( (modm, xK_q)
+       , spawn "xmonad --recompile; ~/.xmonad/cleanup.sh; xmonad --restart")
     -- Switch to the next workspace
-  , ((modm .|. controlMask, xK_Right), nextWS)
+     , ((modm .|. controlMask, xK_Right), nextWS)
     -- Switch to the previous workspace
-  , ((modm .|. controlMask, xK_Left), prevWS)
-  ] ++
+     , ((modm .|. controlMask, xK_Left), prevWS)
+     ]
+       ++
     -- Send window to the workspace
-  [ ((modm .|. shiftMask, xK_Left), shiftToPrev >> prevWS) -- Send window to previous workspace
-  , ((modm .|. shiftMask, xK_Right), shiftToNext >> nextWS) -- Send window to next workspace
-  ] ++
+        [ ((modm .|. shiftMask, xK_Left), shiftToPrev >> prevWS) -- Send window to previous workspace
+        , ((modm .|. shiftMask, xK_Right), shiftToNext >> nextWS) -- Send window to next workspace
+        ]
+       ++
     -- super-space, Change keyboard layout
-  [((mod4Mask, xK_space), spawn "~/.xmonad/toggle_layout.sh")] ++
+        [((mod4Mask, xK_space), spawn "~/.xmonad/toggle_layout.sh")]
+       ++
     -- Keybinding for play/pause button (headphones)
-  [ ((0, xF86XK_AudioPlay), spawn "playerctl play-pause")
-  , ((0, xF86XK_AudioPause), spawn "playerctl play-pause")
-  ] ++
-  [((modm .|. controlMask, xK_grave), spawn "~/.xmonad/media_check_lock.sh")]
+        [ ((0, xF86XK_AudioPlay), spawn "playerctl play-pause")
+        , ((0, xF86XK_AudioPause), spawn "playerctl play-pause")
+        ]
+       ++ [ ( (modm .|. controlMask, xK_grave)
+            , spawn "~/.xmonad/media_check_lock.sh")
+          ]
 
 myMouseBindings XConfig {XMonad.modMask = modm} =
   M.fromList
@@ -177,27 +186,30 @@ mySpace :: Integer
 mySpace = 5
 
 tall =
-  renamed [Replace "tall"] $
-  limitWindows 5 $
-  smartBorders $
-  windowNavigation $
-  addTabs shrinkText myTabTheme $
-  subLayout [] (smartBorders Simplest) $
-  mySpacing mySpace $ ResizableTall 1 (3 / 100) (1 / 2) []
+  renamed [Replace "tall"]
+    $ limitWindows 5
+    $ smartBorders
+    $ windowNavigation
+    $ addTabs shrinkText myTabTheme
+    $ subLayout [] (smartBorders Simplest)
+    $ mySpacing mySpace
+    $ ResizableTall 1 (3 / 100) (1 / 2) []
 
 monocle =
-  renamed [Replace "monocle"] $
-  smartBorders $
-  windowNavigation $
-  addTabs shrinkText myTabTheme $ subLayout [] (smartBorders Simplest) Full
+  renamed [Replace "monocle"]
+    $ smartBorders
+    $ windowNavigation
+    $ addTabs shrinkText myTabTheme
+    $ subLayout [] (smartBorders Simplest) Full
 
 floats = renamed [Replace "floats"] $ smartBorders simplestFloat
 
 myLayoutHook =
-  avoidStruts $
-  mouseResize $
-  windowArrange $
-  T.toggleLayouts floats $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
+  avoidStruts
+    $ mouseResize
+    $ windowArrange
+    $ T.toggleLayouts floats
+    $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
   where
     myDefaultLayout = withBorder myBorderWidth tall ||| noBorders monocle
 
@@ -214,24 +226,23 @@ myTabTheme =
 
 batteryCheck :: IO ()
 batteryCheck =
-  void $
-  forkIO $
-  forever $ do
-    safeSpawn "bash" ["-c", "~/.xmonad/check_battery.sh"]
-    threadDelay (60 * 1000000)
+  void
+    $ forkIO
+    $ forever
+    $ do
+        safeSpawn "bash" ["-c", "~/.xmonad/check_battery.sh"]
+        threadDelay (60 * 1000000)
 
 myLogHook = return ()
 
 myStartupHook = do
   spawn "killall xmobar"
-  
   liftIO batteryCheck
   spawnOnce "~/.xmonad/apply_color_profile.sh"
   spawnOnce "numlockx on"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
   spawnOnce "xautolock -time 10 -locker ~/.xmonad/media_check_lock.sh &"
-  
   spawn "sleep 0.001 && xmobar ~/.config/xmobar/xmobarrc"
 
 main = do
