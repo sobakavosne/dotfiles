@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOW_BATTERY_THRESHOLD=15
+LOW_BATTERY_THRESHOLD=20
 NOTIFICATION_ID_FILE="/tmp/battery_notification_id"
 
 send_notification() {
