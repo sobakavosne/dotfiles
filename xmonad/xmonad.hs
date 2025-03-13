@@ -100,6 +100,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
      , ((modm .|. shiftMask, xK_p), spawn "gmrun")
     -- launch firefox
      , ((mod4Mask, xK_f), spawn "firefox")
+    -- launch librewolf
+     , ((mod4Mask, xK_w), spawn "librewolf")
     -- launch vscode
      , ((mod4Mask, xK_c), spawn "code")
     -- launch discord
