@@ -158,7 +158,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
     -- super-space, Change keyboard layout
         [((mod4Mask, xK_space), spawn "~/.xmonad/toggle_layout.sh")]
        ++
-    -- Keybinding for play/pause button (headphones)
+    -- Keybindings for play/pause button (headphones)
         [ ((0, xF86XK_AudioPlay), spawn "playerctl play-pause")
         , ((0, xF86XK_AudioPause), spawn "playerctl play-pause")
         ]
