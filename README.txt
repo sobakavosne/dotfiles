@@ -6,7 +6,8 @@ sudo apt install xmonad libghc-xmonad-contrib-dev \
   i3lock \
   zoxide \
   numlockx vim pulseaudio-utils \
-  imagemagick pavucontrol
+  imagemagick pavucontrol \
+  stacer
 
 sudo snap refresh --hold=forever
 
