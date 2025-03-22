@@ -20,4 +20,6 @@ alias vim='nvim'
 
 alias c='clear'
 
+alias b='bluetoothctl'
+
 alias commit='git commit -m'
