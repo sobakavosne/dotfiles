@@ -23,3 +23,5 @@ alias c='clear'
 alias b='bluetoothctl'
 
 alias commit='git commit -m'
+
+export COMPOSE_BAKE=true
