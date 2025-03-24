@@ -10,7 +10,8 @@ _____________
       zoxide \
       numlockx vim pulseaudio-utils \
       imagemagick pavucontrol \
-      stacer flatpak
+      stacer flatpak \
+      neovim fzf
     
     sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     
