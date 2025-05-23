@@ -1,54 +1,86 @@
 import           Control.Concurrent                  (forkIO, threadDelay)
 import           Control.Monad                       (forever, void)
 import           Control.Monad.IO.Class              (liftIO)
-import           Data.Monoid
-import           System.Exit
+import           Data.Monoid                         ()
+import           System.Exit                         (exitSuccess)
 import           System.IO                           (hPutStrLn)
-import           XMonad
+import           XMonad                              (ChangeLayout (NextLayout),
+                                                      Default (def),
+                                                      Full (Full),
+                                                      IncMasterN (IncMasterN),
+                                                      MonadIO (liftIO),
+                                                      Resize (Expand, Shrink),
+                                                      XConfig (XConfig, borderWidth, clickJustFocuses, focusFollowsMouse, focusedBorderColor, keys, layoutHook, logHook, modMask, mouseBindings, normalBorderColor, startupHook, terminal, workspaces),
+                                                      button1, button2, button3,
+                                                      controlMask, focus, io,
+                                                      kill, mod1Mask, mod4Mask,
+                                                      mouseMoveWindow,
+                                                      mouseResizeWindow,
+                                                      sendMessage, setLayout,
+                                                      shiftMask, spawn, windows,
+                                                      withFocused, xK_Left,
+                                                      xK_Print, xK_Return,
+                                                      xK_Right, xK_Tab, xK_b,
+                                                      xK_c, xK_comma, xK_d,
+                                                      xK_e, xK_grave, xK_i,
+                                                      xK_k, xK_l, xK_o, xK_p,
+                                                      xK_period, xK_q, xK_space,
+                                                      xK_t, xK_w, xmonad, (.|.),
+                                                      (|||))
 
 import qualified Data.Map.Strict                     as M
 import qualified XMonad.StackSet                     as W
 
 -- Actions
-import           XMonad.Actions.CopyWindow
+import           XMonad.Actions.CopyWindow           ()
 import           XMonad.Actions.CycleWS              (nextWS, prevWS,
                                                       shiftToNext, shiftToPrev)
-import           XMonad.Actions.MouseResize
+import           XMonad.Actions.MouseResize          (mouseResize)
 
 -- Hooks
-import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageDocks            (ToggleStruts (ToggleStruts),
+                                                      avoidStruts, docks)
 
 -- Layouts
-import           XMonad.Layout.LayoutModifier
+import           XMonad.Layout.LayoutModifier        (ModifiedLayout)
 import           XMonad.Layout.LimitWindows          (decreaseLimit,
                                                       increaseLimit,
                                                       limitWindows)
 import           XMonad.Layout.MultiToggle           (EOT (EOT), mkToggle,
                                                       single, (??))
 import           XMonad.Layout.MultiToggle.Instances (StdTransformers (MIRROR, NBFULL, NOBORDERS))
-import           XMonad.Layout.NoBorders
-import           XMonad.Layout.Renamed
-import           XMonad.Layout.ResizableTile
-import           XMonad.Layout.Simplest
-import           XMonad.Layout.SimplestFloat
-import           XMonad.Layout.Spacing
-import           XMonad.Layout.Spiral
-import           XMonad.Layout.SubLayouts
-import           XMonad.Layout.Tabbed
-import           XMonad.Layout.ThreeColumns
+import           XMonad.Layout.NoBorders             (noBorders, smartBorders,
+                                                      withBorder)
+import           XMonad.Layout.Renamed               (Rename (Replace), renamed)
+import           XMonad.Layout.ResizableTile         (MirrorResize (MirrorExpand, MirrorShrink),
+                                                      ResizableTall (ResizableTall))
+import           XMonad.Layout.Simplest              (Simplest (Simplest))
+import           XMonad.Layout.SimplestFloat         (simplestFloat)
+import           XMonad.Layout.Spacing               (Border (Border), Spacing,
+                                                      spacingRaw)
+import           XMonad.Layout.Spiral                ()
+import           XMonad.Layout.SubLayouts            (subLayout)
+import           XMonad.Layout.Tabbed                (Theme (activeBorderColor, activeColor, activeTextColor, fontName, inactiveBorderColor, inactiveColor, inactiveTextColor),
+                                                      addTabs, def, shrinkText)
+import           XMonad.Layout.ThreeColumns          ()
 import qualified XMonad.Layout.ToggleLayouts         as T (ToggleLayout (Toggle),
                                                            toggleLayouts)
 import           XMonad.Layout.WindowArranger        (WindowArrangerMsg (..),
                                                       windowArrange)
-import           XMonad.Layout.WindowNavigation
+import           XMonad.Layout.WindowNavigation      (def, windowNavigation)
 
 -- Utils
 import           XMonad.Util.EZConfig                (additionalKeysP)
-import           XMonad.Util.Run
-import           XMonad.Util.SpawnOnce
+import           XMonad.Util.Run                     (safeSpawn)
+import           XMonad.Util.SpawnOnce               (spawnOnce)
 
 -- Extra
-import           Graphics.X11.ExtraTypes.XF86
+import           Graphics.X11.ExtraTypes.XF86        (xF86XK_AudioLowerVolume,
+                                                      xF86XK_AudioPause,
+                                                      xF86XK_AudioPlay,
+                                                      xF86XK_AudioRaiseVolume,
+                                                      xF86XK_MonBrightnessDown,
+                                                      xF86XK_MonBrightnessUp)
 
 myTerminal = "terminator"
 
@@ -89,7 +121,8 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList
     $
     -- launch a terminal
-     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+     [ ((modm .|. shiftMask, xK_Return), spawn "terminator -x nu")
+      -- ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
     -- launch dmenu
      , ((modm, xK_p), spawn "dmenu_run")
     -- launch nautilus
