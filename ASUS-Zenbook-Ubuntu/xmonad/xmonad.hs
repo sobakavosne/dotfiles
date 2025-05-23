@@ -120,24 +120,16 @@ color16 = "#6c71c4"
 myKeys conf@XConfig {XMonad.modMask = modm} =
   M.fromList
     $
-    -- launch a terminal
-     [ ((modm .|. shiftMask, xK_Return), spawn "terminator -x nu")
-      -- ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
-    -- launch dmenu
+     [
+      -- ((modm .|. shiftMask, xK_Return), spawn "terminator -x nu")
+      ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
      , ((modm, xK_p), spawn "dmenu_run")
-    -- launch nautilus
      , ((mod4Mask, xK_e), spawn "nautilus")
-    -- launch telegram
      , ((mod4Mask, xK_t), spawn "telegram-desktop")
-    -- launch gmrun
      , ((modm .|. shiftMask, xK_p), spawn "gmrun")
-    -- launch librewolf
      , ((mod4Mask, xK_w), spawn "librewolf")
-    -- launch vscode
      , ((mod4Mask, xK_c), spawn "code")
-    -- launch discord
      , ((mod4Mask, xK_d), spawn "discord")
-    -- launch flameshot
      , ((0, xK_Print), spawn "flameshot gui")
     -- close focused window
      , ((modm .|. shiftMask, xK_c), kill)
