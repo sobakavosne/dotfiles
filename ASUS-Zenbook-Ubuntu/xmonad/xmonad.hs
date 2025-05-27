@@ -171,6 +171,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
      , ((modm .|. controlMask, xK_Right), nextWS)
     -- Switch to the previous workspace
      , ((modm .|. controlMask, xK_Left), prevWS)
+     , ((modm .|. shiftMask, xK_l), spawn "~/.xmonad/media_lock_once.sh")
      ]
        ++
     -- Send window to the workspace
