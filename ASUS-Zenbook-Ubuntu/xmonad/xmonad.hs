@@ -20,7 +20,7 @@ import           XMonad                              (ChangeLayout (NextLayout),
                                                       shiftMask, spawn, windows,
                                                       withFocused, xK_Left,
                                                       xK_Print, xK_Return,
-                                                      xK_Right, xK_Tab, xK_b,
+                                                      xK_Right, xK_Tab, xK_b, xK_r,
                                                       xK_c, xK_comma, xK_d,
                                                       xK_e, xK_grave, xK_i,
                                                       xK_k, xK_l, xK_o, xK_p,
@@ -124,7 +124,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       -- ((modm .|. shiftMask, xK_Return), spawn "terminator -x nu")
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
      , ((modm, xK_p), spawn "dmenu_run")
-     , ((modm, xK_p), spawn "wire-desktop --password-store=\"gnome-libsecret\"")
+     , ((modm, xK_r), spawn "wire-desktop --password-store=\"gnome-libsecret\"")
      , ((mod4Mask, xK_e), spawn "nautilus")
      , ((mod4Mask, xK_t), spawn "telegram-desktop")
      , ((modm .|. shiftMask, xK_p), spawn "gmrun")
