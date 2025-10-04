@@ -124,6 +124,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
       -- ((modm .|. shiftMask, xK_Return), spawn "terminator -x nu")
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
      , ((modm, xK_p), spawn "dmenu_run")
+     , ((modm, xK_p), spawn "wire-desktop --password-store=\"gnome-libsecret\"")
      , ((mod4Mask, xK_e), spawn "nautilus")
      , ((mod4Mask, xK_t), spawn "telegram-desktop")
      , ((modm .|. shiftMask, xK_p), spawn "gmrun")
