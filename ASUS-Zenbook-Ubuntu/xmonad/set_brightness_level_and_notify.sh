@@ -69,7 +69,7 @@ elif (($(echo "$new_brightness < 0.05" | bc -l))); then
 fi
 
 # Set new brightness
-xrandr --output eDP-1-0 --brightness "$new_brightness"
+xrandr --output eDP --brightness "$new_brightness"
 
 # Get the new brightness level as a percentage
 current_brightness_level=$(awk "BEGIN {printf \"%.0f%%\", $new_brightness * 100}")
