@@ -107,7 +107,7 @@ myWorkspaces = map show [0 .. 9]
 
 myNormalBorderColor = "#282c34"
 
-myFocusedBorderColor = "#cc9999" -- "#46d9ff"
+myFocusedBorderColor = "#686de1" -- "#cc9999" -- "#46d9ff"
 
 colorBack = "#fdf6e3"
 
@@ -129,7 +129,7 @@ myKeys conf@XConfig {XMonad.modMask = modm} =
      , ((mod4Mask, xK_t), spawn "telegram-desktop")
      , ((modm .|. shiftMask, xK_p), spawn "gmrun")
      , ((mod4Mask, xK_w), spawn "librewolf")
-     , ((mod4Mask, xK_c), spawn "code")
+     , ((mod4Mask, xK_c), spawn "~/Public/Cursor.AppImage --no-sandbox")
      , ((mod4Mask, xK_d), spawn "discord")
      , ((0, xK_Print), spawn "flameshot gui")
     -- close focused window

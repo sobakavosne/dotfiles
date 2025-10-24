@@ -1,5 +1,3 @@
-eval "$(starship init bash)"
-
 eval "$(zoxide init bash)"
 
 export PATH="/home/dm/.local/bin:$PATH"
@@ -16,7 +14,7 @@ alias tt='tree -La 2'
 
 alias inv='nvim $(fzf --preview "batcat --color=always --style=numbers --line-range=:500 {}")'
 
-alias vim='nvim'
+alias vim='vim'
 
 alias c='clear'
 
@@ -24,4 +22,8 @@ alias b='bluetoothctl'
 
 alias commit='git commit -m'
 
+export PATH="$HOME/.cabal/bin:$PATH"
+export PATH="$HOME/.ghcup/bin:$PATH"
 export COMPOSE_BAKE=true
+
+eval "$(oh-my-posh init bash --config /home/s/.cache/oh-my-posh/themes/paradox.omp.json)"

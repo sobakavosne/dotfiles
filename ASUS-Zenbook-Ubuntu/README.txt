@@ -44,6 +44,10 @@ _____________
     curl -1sLf   'https://dl.cloudsmith.io/public/coolercontrol/coolercontrol/setup.deb.sh'   | sudo -E bash
     sudo apt update
     sudo apt install coolercontrol
+
+  For the newest version also the following driver should be installed:
+
+    sudo apt install nvidia-driver-580-open
   
   Ubuntu notes
   
