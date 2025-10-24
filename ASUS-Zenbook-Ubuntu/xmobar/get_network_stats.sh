@@ -29,19 +29,20 @@ tx_speed=$(( (tx_bytes - prev_tx) / interval ))
 echo "$rx_bytes $tx_bytes" > "$temp_file"
 
 # Convert to human readable format (KB/s or MB/s)
-if [ $rx_speed -gt 1024 ]; then
-    rx_display=$(echo "scale=1; $rx_speed/1024" | bc -l 2>/dev/null || echo "0")
+# Note: 1 MB = 1,048,576 bytes (1024²)
+if [ $rx_speed -gt 1048576 ]; then
+    rx_display=$(echo "scale=1; $rx_speed/1048576" | bc -l 2>/dev/null || echo "0")
     rx_unit="MB/s"
 else
-    rx_display=$(echo "scale=1; $rx_speed" | bc -l 2>/dev/null || echo "0")
+    rx_display=$(echo "scale=1; $rx_speed/1024" | bc -l 2>/dev/null || echo "0")
     rx_unit="KB/s"
 fi
 
-if [ $tx_speed -gt 1024 ]; then
-    tx_display=$(echo "scale=1; $tx_speed/1024" | bc -l 2>/dev/null || echo "0")
+if [ $tx_speed -gt 1048576 ]; then
+    tx_display=$(echo "scale=1; $tx_speed/1048576" | bc -l 2>/dev/null || echo "0")
     tx_unit="MB/s"
 else
-    tx_display=$(echo "scale=1; $tx_speed" | bc -l 2>/dev/null || echo "0")
+    tx_display=$(echo "scale=1; $tx_speed/1024" | bc -l 2>/dev/null || echo "0")
     tx_unit="KB/s"
 fi
 
