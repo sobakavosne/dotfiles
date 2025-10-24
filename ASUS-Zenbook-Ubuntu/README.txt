@@ -1,6 +1,13 @@
 UBUNTU distro
 _____________
 
+  Quick Installation:
+  
+    cd /path/to/ASUS-Zenbook-Ubuntu
+    ./install.sh
+    
+    This will automatically copy all configuration files and scripts to their proper locations.
+
   Prerequisites:
   
     sudo apt install xmonad libghc-xmonad-contrib-dev \
@@ -13,7 +20,10 @@ _____________
       stacer flatpak \
       neovim fzf \
       fonts-firacode \
-      radeontop nvidia-smi
+      radeontop nvidia-smi \
+      lm-sensors bc \
+      bluetooth bluez-tools \
+      xrandr setxkbmap
     
     sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     
