@@ -161,6 +161,17 @@ for script in "$SCRIPT_DIR/xmonad"/*.sh; do
     fi
 done
 
+# Copy oh-my-posh configuration
+echo -e "${BLUE}🎨 Installing oh-my-posh configuration...${NC}"
+if [ -f "$SCRIPT_DIR/ohmyposh/paradox.omp.json" ]; then
+    # Create oh-my-posh cache directory if it doesn't exist
+    mkdir -p ~/.cache/oh-my-posh/themes
+    cp "$SCRIPT_DIR/ohmyposh/paradox.omp.json" ~/.cache/oh-my-posh/themes/
+    print_status "oh-my-posh paradox theme installed"
+else
+    print_warning "paradox.omp.json not found in repository"
+fi
+
 # Set proper permissions
 echo -e "${BLUE}🔐 Setting permissions...${NC}"
 chmod +x ~/.config/xmobar/*.sh 2>/dev/null || true
@@ -175,6 +186,7 @@ echo -e "${GREEN}✓${NC} terminator config installed"
 echo -e "${GREEN}✓${NC} wallpapers installed to ~/Pictures/Wallpapers/"
 echo -e "${GREEN}✓${NC} xmobar configuration and scripts installed"
 echo -e "${GREEN}✓${NC} xmonad configuration and scripts installed"
+echo -e "${GREEN}✓${NC} oh-my-posh paradox theme installed"
 
 echo -e "${BLUE}🎉 Installation completed successfully!${NC}"
 echo ""
