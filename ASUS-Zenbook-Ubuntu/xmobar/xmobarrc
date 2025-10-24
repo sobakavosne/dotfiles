@@ -18,9 +18,9 @@ Config { font            = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=
        , allDesktops = True
        , overrideRedirect = True
        , iconRoot     = ".config/xmobar/xpm/"
-       , commands = [ Run Network "wlp3s0" ["-L","0","-H","32", "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50", "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+       , commands = [ Run Com "bash" ["-c", "~/.config/xmobar/get_network_stats.sh"] "network" 5
+                    , Run Com "bash" ["-c", "~/.config/xmobar/get_cpu_stats.sh"] "cpu" 10
+                    , Run Com "bash" ["-c", "~/.config/xmobar/get_mem_stats.sh"] "memory" 10
                     , Run Swap [] 10
                     , Run Com "uname" ["-s","-r"] "linux" 36000
                     , Run BatteryP ["BAT0"]  [ "-t", "<acstatus> <left>%", "--", "-O", "<fc=#00FF00>AC</fc>", "-i", "<fc=#FFFF00>Idle</fc>", "-L", "15", "-H", "80", "-p", "3", "--", "-l", "#FF0000", "-m", "#FFFF00", "-h", "#00FF00"] 5
@@ -30,10 +30,11 @@ Config { font            = "xft:Ubuntu Mono:pixelsize=16:antialias=true:hinting=
                     , Run Com "bash" ["-c", "~/.config/xmobar/keyboard_layout.sh"] "kbdlayout" 5
                     , Run Com "bash" ["-c", "~/.config/xmobar/get_sound_volume.sh"] "soundlevel" 5
                     , Run Com "bash" ["-c", "~/.config/xmobar/get_current_brightness.sh"] "brightness" 5
-                    , Run Com "bash" ["-c", "~/.config/xmobar/get_gpu_stats.sh"] "gpu" 5
+                    , Run Com "bash" ["-c", "~/.config/xmobar/get_nvidia_gpu_stats.sh"] "nvidia" 5
+                    , Run Com "bash" ["-c", "~/.config/xmobar/get_amd_gpu_stats.sh"] "amd" 5
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " %icon%  <action=`scrot`><fc=#686de1>%linux%</fc></action> | %cpu% | %memory% * %swap% | %gpu% | %wlp3s0% }\
-                     \{ %bluetooth% <fc=#ee9a00>%date%</fc> | Layout: %kbdlayout% | %soundlevel% | %brightness% | %battery% "
+       , template = " %icon%  <action=`scrot`><fc=#686de1>%linux%</fc></action> <fc=#FFFFFF>|</fc> %cpu% <fc=#FFFFFF>|</fc> %memory% * %swap% <fc=#FFFFFF>|</fc> %nvidia% <fc=#FFFFFF>|</fc> %amd% <fc=#FFFFFF>|</fc> %network% }\
+                     \{ %bluetooth% <fc=#ee9a00>%date%</fc> <fc=#FFFFFF>|</fc> Layout: %kbdlayout% <fc=#FFFFFF>|</fc> %soundlevel% <fc=#FFFFFF>|</fc> %brightness% <fc=#FFFFFF>|</fc> %battery% "
        }

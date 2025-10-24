@@ -11,11 +11,11 @@ if systemctl is-active --quiet bluetooth; then
     done)
 
     if [ -z "$devices" ]; then
-        echo "No devices connected |"
+        echo "BT:None <fc=#FFFFFF>|</fc>"
     else
-        echo "$devices |"
+        echo "$devices <fc=#FFFFFF>|</fc>"
     fi
 else
     # Bluetooth is not active
-    echo "BT:Off |"
+    echo "BT:Off <fc=#FFFFFF>|</fc>"
 fi
