@@ -7,22 +7,39 @@ check_media_playing() {
     return 0
   fi
   
-  # Check for common video players
-  if pgrep -f "(vlc|mpv|mplayer|smplayer|totem|parole|banshee|rhythmbox|amarok|clementine|audacious|deadbeef)" >/dev/null; then
+  # Check for common video players (expanded list)
+  if pgrep -f "(vlc|mpv|mplayer|smplayer|totem|parole|banshee|rhythmbox|amarok|clementine|audacious|deadbeef|celluloid|gnome-mpv|kodi|plex|jellyfin)" >/dev/null; then
     return 0
   fi
   
-  # Check for browser-based video (YouTube, Netflix, etc.)
-  if pgrep -f "(firefox|chrome|chromium|brave|opera)" >/dev/null; then
-    # Check if browser has fullscreen video (basic heuristic)
-    if xwininfo -root -children | grep -i "fullscreen\|video" >/dev/null; then
+  # Check for browser-based video (improved detection)
+  if pgrep -f "(firefox|chrome|chromium|brave|opera|librewolf|edge)" >/dev/null; then
+    # Check if any browser window has video content
+    # Look for video elements in browser windows
+    for wid in $(xwininfo -root -children | grep -E "(Firefox|Chrome|Chromium|Brave|Opera|LibreWolf|Edge)" | awk '{print $1}'); do
+      # Check if window contains video-related content
+      if xwininfo -id "$wid" 2>/dev/null | grep -qi "video\|media\|player"; then
+        return 0
+      fi
+    done
+    
+    # Alternative: Check for fullscreen video windows
+    if xwininfo -root -children | grep -i "fullscreen" >/dev/null; then
       return 0
     fi
   fi
   
-  # Check for streaming services
-  if pgrep -f "(spotify|netflix|hulu|disney|prime)" >/dev/null; then
+  # Check for streaming services and music players
+  if pgrep -f "(spotify|netflix|hulu|disney|prime|youtube|twitch|obs|obs-studio)" >/dev/null; then
     return 0
+  fi
+  
+  # Check for any process that might be playing media by looking at audio devices
+  if command -v pactl >/dev/null 2>&1; then
+    # Check if any application is actively using audio
+    if pactl list sink-inputs 2>/dev/null | grep -q "State: RUNNING"; then
+      return 0
+    fi
   fi
   
   return 1
@@ -53,6 +70,8 @@ if check_media_playing; then
   disable_screen_power_management
   # Store state for debugging
   echo "$(date): Media detected, screen power management disabled" >> /tmp/media_check.log
+  # Exit without locking the screen
+  exit 0
 else
   # Enable screen lock and dimming if no media is playing
   enable_screen_power_management

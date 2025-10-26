@@ -269,7 +269,7 @@ myStartupHook = do
   spawnOnce "numlockx on"
   spawnOnce "nitrogen --restore &"
   spawnOnce "compton &"
-  spawnOnce "xautolock -time 10 -locker ~/.xmonad/media_check_lock.sh &"
+  spawnOnce "xautolock -time 10 -locker ~/.xmonad/xautolock_wrapper.sh &"
   spawn "sleep 0.01 && xmobar ~/.config/xmobar/xmobarrc"
 
 main = do
