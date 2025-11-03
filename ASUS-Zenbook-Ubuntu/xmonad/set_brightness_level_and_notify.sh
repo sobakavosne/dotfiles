@@ -7,9 +7,6 @@ usage() {
   exit 1
 }
 
-# Initialize delta variable
-delta=""
-
 # Parse the options
 PARSED_OPTIONS=$(getopt -o d: --long delta: -- "$@")
 if [ $? -ne 0 ]; then
@@ -17,6 +14,9 @@ if [ $? -ne 0 ]; then
 fi
 
 eval set -- "$PARSED_OPTIONS"
+
+# Initialize delta variable
+delta=""
 
 while true; do
   case "$1" in
@@ -51,37 +51,6 @@ else
   threshold=0.05
 fi
 
-# Function to detect graphics card and set appropriate display output
-detect_display_output() {
-  # Check if Nvidia is being used
-  if lspci | grep -i nvidia > /dev/null 2>&1; then
-    # Check if nvidia-settings is available and nvidia driver is loaded
-    if command -v nvidia-settings > /dev/null 2>&1 && nvidia-settings -q gpu > /dev/null 2>&1; then
-      echo "eDP-1-0"
-      return
-    fi
-  fi
-  
-  # Check if Radeon/AMD is being used
-  if lspci | grep -i "radeon\|amd" > /dev/null 2>&1; then
-    echo "eDP"
-    return
-  fi
-  
-  # Default fallback - try to detect from xrandr output
-  if xrandr | grep -q "eDP-1-0"; then
-    echo "eDP-1-0"
-  elif xrandr | grep -q "eDP"; then
-    echo "eDP"
-  else
-    # Ultimate fallback
-    echo "eDP-1-0"
-  fi
-}
-
-# Get the appropriate display output
-display_output=$(detect_display_output)
-
 # Get current brightness
 current_brightness=$(xrandr --verbose | grep -i brightness | cut -f2 -d ' ')
 
@@ -97,6 +66,15 @@ if (($(echo "$new_brightness > 1" | bc -l))); then
   new_brightness=1
 elif (($(echo "$new_brightness < 0.05" | bc -l))); then
   new_brightness=0.05
+fi
+
+# Determine which display output to use
+if xrandr | grep -q "^eDP-1-0"; then
+  display_output="eDP-1-0"
+elif xrandr | grep -q "^eDP"; then
+  display_output="eDP"
+else
+  display_output="eDP-1-0"  # Default fallback
 fi
 
 # Set new brightness
