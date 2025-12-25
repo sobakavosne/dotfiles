@@ -268,9 +268,9 @@ myStartupHook = do
   liftIO batteryCheck
   spawnOnce "~/.xmonad/apply_color_profile.sh"
   spawnOnce "numlockx on"
-  spawnOnce "nitrogen --restore &"
-  spawnOnce "compton &"
-  spawnOnce "xautolock -time 10 -locker ~/.xmonad/xautolock_wrapper.sh &"
+  spawnOnce "nitrogen --restore"
+  spawnOnce "picom --backend glx --vsync"
+  spawnOnce "xautolock -time 10 -locker ~/.xmonad/xautolock_wrapper.sh"
   spawn "sleep 0.01 && xmobar ~/.config/xmobar/xmobarrc"
 
 main = do
